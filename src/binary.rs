@@ -1,4 +1,5 @@
 pub mod module;
+pub mod section;
 
 #[cfg(test)]
 mod tests {
@@ -12,4 +13,13 @@ mod tests {
         assert_eq!(module, Module::default());
         Ok(())
     }
+
+    #[test]
+    fn decode_simplest_func() -> Result<()> {
+        let wasm = wat::parse_str("(module (func))")?;
+        let module = Module::new(&wasm)?;
+        // TODO: parse func
+        assert_eq!(module, Module::default());
+        Ok(())
+    }    
 }
